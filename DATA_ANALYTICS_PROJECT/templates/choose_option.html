@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Dashboard Overview</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Case Study</h5>
+                    <img src="{{ url_for('static', filename='imgs/casestudy.png') }}" alt="" class="img-fluid mb-4" style="height: 400px; width:100%; border-radius: 6px;" />
+                    <a href="{{ url_for('casestudy') }}" class="btn" style="background-color: #4285F4; color: white; font-size: 18px;">Go to Case Study</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Prediction</h5>
+                    <img src="{{ url_for('static', filename='imgs/pred.jpg') }}" alt="" class="img-fluid mb-4" style="height: 400px; width:100%; border-radius: 6px;" />
+                    <a href="{{ url_for('prediction') }}" class="btn" style="background-color: #4285F4; color: white; font-size: 18px;">Go to Prediction</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Association Rules</h5>
+                    <img src="{{ url_for('static', filename='imgs/rules.png') }}" alt="" class="img-fluid mb-4" style="height: 400px; width:100%; border-radius: 6px;" />
+                    <a href="{{ url_for('association_rules_view') }}" class="btn" style="background-color: #4285F4; color: white; font-size: 18px;">View Association Rules</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

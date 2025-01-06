@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Case Study on Job Employment and Salaries</title>
+</head>
+<body>
+    <div class="load_dataset">
+        <img src="{{ url_for('static', filename='imgs/loaddata.png') }}" alt="" style="height: 400px; border-radius: 6px;" />
+        <h2 class="load_title">Load Dataset</h2>
+        <form action="{{ url_for('load_data') }}" method="post" enctype="multipart/form-data">
+            <input type="file" name="file">
+            <button type="submit">Load</button>
+        </form>
+    </div>
+    
+</body>
+</html>

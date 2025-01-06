@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="text-center case_title">Prediction Result</h1>
+
+<!-- Display Prediction Result -->
+{% if prediction %}
+    <h5 class="text-center case_title">Your salary would be around ${{ prediction }} per month</h5>
+{% else %}
+    <p>No prediction available. Please try again or check your input values.</p>
+{% endif %}
+
+<!-- Link to go back to the Prediction page -->
+<div class="text-center">
+    <a href="{{ url_for('prediction') }}" class="btn btn-primary mt-2">Back to Prediction</a>
+  </div>
+
+{% endblock %}

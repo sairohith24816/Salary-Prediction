@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <h1 class="text-center">Make a Prediction</h1>
+    <div class="row">
+        <!-- Scatter Plot -->
+        <div class="col-md-6">
+            <h4>Actual vs Predicted</h4>
+            {% if scatter_plot %}
+                <div>{{ scatter_plot | safe }}</div>
+            {% else %}
+                <p>No scatter plot available yet. Train a model and make predictions to see results.</p>
+            {% endif %}
+        </div>
+
+        <!-- Prediction Form -->
+        <div class="col-md-6">
+            <h4>Input Features</h4>
+            <form method="post">
+                {% for feature in selected_features %}
+                    <div class="mb-3">
+                        <label for="{{ feature }}" class="form-label">{{ feature }}</label>
+                        {% if feature in unique_values %}
+                            <select id="{{ feature }}" name="{{ feature }}" class="form-select">
+                                {% for value in unique_values[feature] %}
+                                    <option value="{{ value }}">{{ value }}</option>
+                                {% endfor %}
+                            </select>
+                        {% else %}
+                            <input type="text" id="{{ feature }}" name="{{ feature }}" class="form-control" placeholder="Enter {{ feature }}">
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                <button type="submit" class="btn btn-primary">Predict</button>
+            </form>
+
+            {% if error %}
+                <p class="text-danger">{{ error }}</p>
+            {% endif %}
+            
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1 class="text-center case_title">Case Study on Dataset Analysis</h1>
+
+    {% if error_message %}
+        <div class="alert alert-danger">
+            <strong>Error:</strong> {{ error_message | safe }}
+        </div>
+    {% endif %}
+
+    <form method="POST" class="container">
+        <div class="row">
+            <!-- Left Column: Categorical Features -->
+            <div class="col-md-4">
+                <h3>Select Categorical Features</h3>
+                <div>
+                    {% for feature in categorical_features %}
+                        <label>
+                            <input type="checkbox" name="categorical_features" value="{{ feature }}">
+                            {{ feature }}
+                        </label><br>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Middle Column: Numerical Features (Swapped) -->
+            <div class="col-md-4">
+                <h3>Select Numerical Features</h3>
+                <div>
+                    {% for feature in numerical_features %}
+                        <label>
+                            <input type="checkbox" name="numerical_features" value="{{ feature }}">
+                            {{ feature }}
+                        </label><br>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Right Column: Skills (Swapped) -->
+            <div class="col-md-4">
+                <h3>Select Skills</h3>
+                <div>
+                    {% for skill in skill_columns %}
+                        <label>
+                            <input type="checkbox" name="skill_columns" value="{{ skill }}">
+                            {{ skill }}
+                        </label><br>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Graph Type Selection -->
+        <div class="mt-4">
+            <h3 class="text-center"> Select Graph Type</h3>
+            <select name="graph_type" class="form-select">
+                <option value="bar">Bar Chart</option>
+                <option value="pie">Pie Chart</option>
+                <option value="box">Box Plot</option>
+                <option value="histogram">Histogram</option>
+                <option value="scatter">Scatter Plot</option>
+            </select>
+        </div>
+
+        <button type="submit" class="google-blue mt-4">Generate Graph</button>
+    </form>
+
+    <!-- Render the Graph -->
+    <div id="graph" class="mt-5"></div>
+    {% if graphJSON %}
+        <script>
+            var graphData = {{ graphJSON | safe }};
+            Plotly.newPlot('graph', graphData.data, graphData.layout);
+        </script>
+    {% endif %}
+{% endblock %}

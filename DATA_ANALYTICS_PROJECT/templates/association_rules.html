@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Association Rules</h1>
+    
+        <div class="row">
+            <!-- Left Column: Skill Selection Form -->
+            <div class="col-md-6">
+                <div class="association-form">
+                    <h2 class="table-heading text-center">Select Skills</h2>
+                    <form method="POST" action="{{ url_for('association_rules_view') }}">
+                        <div class="mb-4">
+                            <div class="form-check">
+                                {% for skill in unique_values['skills'] %}
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" name="skills" value="{{ skill }}">
+                                        {{ skill }}
+                                    </label><br>
+                                {% endfor %}
+                            </div>
+                        </div>
+    
+                        <button type="submit">Show Associated Skills</button>
+                    </form>
+                </div>
+            </div>
+    
+            <!-- Right Column: Association Rules -->
+            <div class="col-md-6">
+                {% if rules %}
+                <div class="scrollable-container">
+                    <h2 class="table-heading text-center">Rules</h2>
+                    <ul class="list-group">
+                        {% for rule in rules %}
+                            <li class="list-group-item">
+                                <strong>Antecedent:</strong> {{ rule['antecedents'] }} <br>
+                                <strong>Consequent:</strong> {{ rule['consequents'] }} <br>
+                                <strong>Confidence:</strong> {{ rule['confidence'] }} <br>
+                                <strong>Lift:</strong> {{ rule['lift'] }} <br>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endblock %}
