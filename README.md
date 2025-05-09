@@ -92,4 +92,4 @@ project_root/
 ---
 
 ## Author
-[Sai Rohith](https://github.com/sairohith24816)
+[Galam Sai Rohith](https://github.com/sairohith24816)
